@@ -1,11 +1,11 @@
 <template>
   <div class="datepicker-wrapper">
-    <div class="datepicker-dummy-wrapper" @click="isOpen = !isOpen">
+    <div class="datepicker-dummy-wrapper" @click="isOpen = true">
       <input v-if="!singleDateSelection" type="text" class="datepicker" :value="formatDate(startDateValue, format)" :placeholder="i18n['start-date']" readonly>
       <input v-if="!singleDateSelection" type="text" class="datepicker" :value="formatDate(endDateValue, format)" :placeholder="i18n['end-date']" readonly>
       <input v-if="singleDateSelection" type="text" class="datepicker" :value="formatDate(startDateValue, format)" :placeholder="i18n['choose-date']" readonly>
     </div>
-    <div class="datepicker-main-wrapper" v-show="isOpen">
+    <div class="datepicker-main-wrapper" v-click-outside="() => {isOpen = false}" v-if="isOpen">
       <div class="datepicker-inner">
         <div class="datepicker-header"></div>
         <div class="datepicker-container" v-for="(cal, index) in calenders" v-if="index === activeMonthIndex" :key="index">

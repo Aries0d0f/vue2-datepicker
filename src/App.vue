@@ -1,10 +1,17 @@
 <template>
   <div id="app">
-    <h1>Demo</h1>
-    <div class="date-picker">
+    <div class="container">
+      <h1>Demo</h1>
+    </div>
+    <div class="container">
       <h2>Single date selection</h2>
       <pre></pre>
-      <date-picker :singleDateSelection="true" />
+      <date-picker />
+    </div>
+    <div class="container">
+      <h2>Date range selection</h2>
+      <pre></pre>
+      <date-picker :singleDateSelection="false" />
     </div>
   </div>
 </template>

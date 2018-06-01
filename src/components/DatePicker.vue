@@ -1,9 +1,9 @@
 <template>
   <div class="datepicker-wrapper">
     <div class="datepicker-dummy-wrapper" @click="isOpen = true">
-      <input v-if="!singleDateSelection" type="text" class="datepicker" :value="formatDate(startDateValue, format)" :placeholder="i18n['start-date']" readonly>
-      <input v-if="!singleDateSelection" type="text" class="datepicker" :value="formatDate(endDateValue, format)" :placeholder="i18n['end-date']" readonly>
-      <input v-if="singleDateSelection" type="text" class="datepicker" :value="formatDate(startDateValue, format)" :placeholder="i18n['choose-date']" readonly>
+      <input v-if="!singleDateSelection" type="text" class="datepicker" :value="formatDate(startingDateValue, format)" :placeholder="i18n['start-date']" readonly>
+      <input v-if="!singleDateSelection" type="text" class="datepicker" :value="formatDate(endingDateValue, format)" :placeholder="i18n['end-date']" readonly>
+      <input v-if="singleDateSelection" type="text" class="datepicker" :value="formatDate(startingDateValue, format)" :placeholder="i18n['choose-date']" readonly>
     </div>
     <div class="datepicker-main-wrapper" v-click-outside="() => {isOpen = false}" v-if="isOpen">
       <div class="datepicker-inner">
@@ -18,7 +18,7 @@
           </div>
           <div class="datepicker-table">
             <p v-for="n in cal.startWeekIndex" :key="n"></p>
-            <p class="datepicker-day" v-for="(day, i) in cal.daysArray" :key="i + cal.startWeekIndex + 1" @mouseover="hoveringDate = day" @click="setDay(day)" :class="{'active': isSelecedDay(day)}">{{ new Date(day).getDate() }}</p>
+            <p class="datepicker-day" v-for="(day, i) in cal.daysArray" :key="i + cal.startWeekIndex + 1" @mouseover="hoveringDate = day" @click="isAvailDay(day) ? setDay(day) : null" :class="{'active': isSelecedDay(day), 'available': isAvailDay(day)}">{{ new Date(day).getDate() }}</p>
           </div>
         </div>
       </div>
@@ -41,12 +41,23 @@ const defaultI18n = {
 export default {
   name: 'DatePicker',
   props: {
+    value: {
+      type: Object
+    },
+    startDateValue: {
+      default: null,
+      type: Date
+    },
+    endDateValue: {
+      default: null,
+      type: Date
+    },
     format: {
       default: 'YYYY-MM-DD',
       type: String
     },
     singleDateSelection: {
-      default: true,
+      default: false,
       type: Boolean
     },
     startDate: {
@@ -96,8 +107,8 @@ export default {
       currentDate: new Date(),
       hoveringDate: null,
       calenders: [],
-      startDateValue: null,
-      endDateValue: null,
+      startingDateValue: this.startDateValue,
+      endingDateValue: this.endDateValue,
       calenderDisplace: 0
     }
   },
@@ -105,28 +116,31 @@ export default {
     ...util,
     setDay (day) {
       if (this.singleDateSelection) {
-        this.startDateValue = day
+        this.startingDateValue = day
         this.isOpen = false
-      } else if (this.startDateValue && !this.endDateValue) {
-        this.endDateValue = day
+      } else if (this.startingDateValue && !this.endingDateValue) {
+        this.endingDateValue = day
         this.isOpen = false
-      } else if (this.endDateValue) {
-        this.startDateValue = day
-        this.endDateValue = null
+      } else if (this.endingDateValue) {
+        this.startingDateValue = day
+        this.endingDateValue = null
       } else {
-        this.startDateValue = day
+        this.startingDateValue = day
       }
     },
     isSelecedDay (day) {
       if (this.singleDateSelection) {
-        return new Date(this.startDateValue).getTime() === new Date(day).getTime()
-      } else if (this.startDateValue) {
-        return new Date(this.startDateValue).getTime() <= new Date(day).getTime() && new Date(day).getTime() <= (new Date(this.endDateValue).getTime() || new Date(this.hoveringDate).getTime())
+        return new Date(this.startingDateValue).getTime() === new Date(day).getTime()
+      } else if (this.startingDateValue) {
+        return new Date(this.startingDateValue).getTime() <= new Date(day).getTime() && new Date(day).getTime() <= (new Date(this.endingDateValue).getTime() || new Date(this.hoveringDate).getTime())
       }
+    },
+    isAvailDay (day) {
+      return new Date(this.startDate).getTime() <= new Date(day).getTime() && new Date(day).getTime() < (new Date(this.endDate).getTime() || this.endDate)
     },
     getCalenderMonth (d) {
       this.calenders = []
-      let startDate = this.startDateValue ? this.startDateValue : this.startDate
+      let startDate = this.startingDateValue ? this.startingDateValue : this.startDate
       if (this.singleDateSelection) {
         this.calenders.push(this.getCalender(new Date(startDate.getFullYear(), startDate.getMonth() + d, 1)))
       } else {
@@ -139,6 +153,12 @@ export default {
     isOpen: function () {
       this.calenderDisplace = 0
       this.getCalenderMonth(0)
+    },
+    startingDateValue (value) {
+      this.$emit('input', { start: this.startingDateValue, end: this.endingDateValue })
+    },
+    endingDateValue (value) {
+      this.$emit('input', { start: this.startingDateValue, end: this.endingDateValue })
     }
   }
 }

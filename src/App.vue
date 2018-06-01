@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <h1>Demo</h1>
-    <date-picker />
+    <div class="date-picker">
+      <h2>Single date selection</h2>
+      <pre></pre>
+      <date-picker :singleDateSelection="true" />
+    </div>
   </div>
 </template>
 

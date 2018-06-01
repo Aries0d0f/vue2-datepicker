@@ -26,17 +26,23 @@
   }
   &-dummy-wrapper {
     position: relative;
-    input {
+    display: flex;
+    flex-direction: row;
+    >div {
       width: 280px;
-      position: relative;
-      font-size: 18px;
-      padding: 3px 10px;
-      appearance: none;
-      -moz-appearance: none;
-      background: none;
-      border: none;
       box-sizing: border-box;
       border-bottom: 2px solid $tone;
+      color: $tone;
+      padding: .5rem 7px;
+      input {
+        position: relative;
+        font-size: 18px;
+        padding: 3px 10px;
+        appearance: none;
+        -moz-appearance: none;
+        background: none;
+        border: none;
+      }
     }
   }
   &-main-wrapper {
@@ -86,9 +92,6 @@
     text-align: center;
     z-index: 10;
     padding: 2px;
-    &:last-child {
-      border-left: 1pt solid rgba($black, .3);
-    }
     h1 {
       font-size: 32px;
     }

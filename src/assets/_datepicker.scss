@@ -29,6 +29,9 @@
     display: flex;
     flex-direction: row;
     >div {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
       width: 280px;
       box-sizing: border-box;
       border-bottom: 2px solid $tone;
@@ -46,6 +49,7 @@
     }
   }
   &-main-wrapper {
+    width: 100%;    
     box-shadow: 1pt 1pt 3pt rgba($black, .5);
     animation: datepicker-appear .2s ease-in-out;
     background: $white;

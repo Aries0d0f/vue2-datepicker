@@ -7,15 +7,18 @@
     </div>
     <div class="datepicker-main-wrapper" v-click-outside="() => {isOpen = false}" v-if="isOpen">
       <div class="datepicker-inner">
-        <div class="datepicker-header"></div>
-        <div class="datepicker-container" v-for="(cal, index) in calenders" v-if="index === activeMonthIndex" :key="index">
-          <h1 class="datepicker-month-name">{{ i18n['month-names'][cal.month - 1] }}</h1>
+        <div class="datepicker-header">
+          <div class="left" @click="getCalenderMonth(--calenderDisplace)"><font-awesome-icon icon="angle-left" /></div>
+          <div class="right" @click="getCalenderMonth(++calenderDisplace)"><font-awesome-icon icon="angle-right" /></div>
+        </div>
+        <div class="datepicker-container" v-for="(cal, index) in calenders" :key="index">
+          <h1 class="datepicker-month-name">{{ i18n['month-names'][cal.month] }}</h1>
           <div class="datepicker-weekbar">
             <span v-for="name in i18n['day-names']" :key="name">{{ name }}</span>
           </div>
           <div class="datepicker-table">
             <p v-for="n in cal.startWeekIndex" :key="n"></p>
-            <p class="datepicker-day" v-for="(day, i) in cal.daysArray" :key="i*10" @click="setDay(day)">{{ new Date(day).getDate() }}</p>
+            <p class="datepicker-day" v-for="(day, i) in cal.daysArray" :key="i + cal.startWeekIndex + 1" @mouseover="hoveringDate = day" @click="setDay(day)" :class="{'active': isSelecedDay(day)}">{{ new Date(day).getDate() }}</p>
           </div>
         </div>
       </div>
@@ -93,9 +96,9 @@ export default {
       currentDate: new Date(),
       hoveringDate: null,
       calenders: [],
-      activeMonthIndex: 0,
       startDateValue: null,
-      endDateValue: null
+      endDateValue: null,
+      calenderDisplace: 0
     }
   },
   methods: {
@@ -104,18 +107,38 @@ export default {
       if (this.singleDateSelection) {
         this.startDateValue = day
         this.isOpen = false
-      } else if (this.startDateValue) {
+      } else if (this.startDateValue && !this.endDateValue) {
         this.endDateValue = day
         this.isOpen = false
+      } else if (this.endDateValue) {
+        this.startDateValue = day
+        this.endDateValue = null
       } else {
         this.startDateValue = day
+      }
+    },
+    isSelecedDay (day) {
+      if (this.singleDateSelection) {
+        return new Date(this.startDateValue).getTime() === new Date(day).getTime()
+      } else if (this.startDateValue) {
+        return new Date(this.startDateValue).getTime() <= new Date(day).getTime() && new Date(day).getTime() <= (new Date(this.endDateValue).getTime() || new Date(this.hoveringDate).getTime())
+      }
+    },
+    getCalenderMonth (d) {
+      this.calenders = []
+      let startDate = this.startDateValue ? this.startDateValue : this.startDate
+      if (this.singleDateSelection) {
+        this.calenders.push(this.getCalender(new Date(startDate.getFullYear(), startDate.getMonth() + d, 1)))
+      } else {
+        this.calenders.push(this.getCalender(new Date(startDate.getFullYear(), startDate.getMonth() + d, 1)))
+        this.calenders.push(this.getCalender(new Date(startDate.getFullYear(), startDate.getMonth() + d + 1, 1)))
       }
     }
   },
   watch: {
     isOpen: function () {
-      this.calenders.pop()
-      this.calenders.push(this.getCalender(this.startDate))
+      this.calenderDisplace = 0
+      this.getCalenderMonth(0)
     }
   }
 }

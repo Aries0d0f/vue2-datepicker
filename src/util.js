@@ -13,9 +13,6 @@ export default {
   getCalender: (month) => {
     return new Calender(month)
   },
-  getNextMonth: (month) => {
-  //
-  },
   formatDate: (date, format) => {
     return date ? fecha.format(new Date(date), format) : null
   }

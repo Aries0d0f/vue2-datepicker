@@ -6,12 +6,12 @@
     <div class="container">
       <h2>Single date selection</h2>
       <pre></pre>
-      <date-picker />
+      <date-picker :singleDateSelection="true" v-model="date" />
     </div>
     <div class="container">
       <h2>Date range selection</h2>
       <pre></pre>
-      <date-picker :singleDateSelection="false" />
+      <date-picker v-model="date" />
     </div>
   </div>
 </template>
@@ -23,6 +23,11 @@ export default {
   name: 'App',
   components: {
     DatePicker
+  },
+  data () {
+    return {
+      date: null
+    }
   }
 }
 </script>

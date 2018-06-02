@@ -1,6 +1,6 @@
 import fecha from 'fecha'
 
-class Calender {
+class Calendar {
   constructor (date) {
     this.year = new Date(date).getFullYear()
     this.month = new Date(date).getMonth()
@@ -10,8 +10,8 @@ class Calender {
 }
 
 export default {
-  getCalender: (month) => {
-    return new Calender(month)
+  getCalendar: (month) => {
+    return new Calendar(month)
   },
   formatDate: (date, format) => {
     return date ? fecha.format(new Date(date), format) : null

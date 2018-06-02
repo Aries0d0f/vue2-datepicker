@@ -8,10 +8,10 @@
     <div class="datepicker-main-wrapper" v-click-outside="() => {isOpen = false}" v-if="isOpen">
       <div class="datepicker-inner">
         <div class="datepicker-header">
-          <div class="left" @click="getCalenderMonth(--calenderDisplace)"><font-awesome-icon icon="angle-left" /></div>
-          <div class="right" @click="getCalenderMonth(++calenderDisplace)"><font-awesome-icon icon="angle-right" /></div>
+          <div class="left" @click="getCalendarMonth(--calendarDisplace)"><font-awesome-icon icon="angle-left" /></div>
+          <div class="right" @click="getCalendarMonth(++calendarDisplace)"><font-awesome-icon icon="angle-right" /></div>
         </div>
-        <div class="datepicker-container" v-for="(cal, index) in calenders" :key="index">
+        <div class="datepicker-container" v-for="(cal, index) in calendars" :key="index">
           <h1 class="datepicker-month-name">{{ i18n['month-names'][cal.month] }}</h1>
           <div class="datepicker-weekbar">
             <span v-for="name in i18n['day-names']" :key="name">{{ name }}</span>
@@ -106,10 +106,10 @@ export default {
       isOpen: false,
       currentDate: new Date(),
       hoveringDate: null,
-      calenders: [],
+      calendars: [],
       startingDateValue: this.startDateValue,
       endingDateValue: this.endDateValue,
-      calenderDisplace: 0
+      calendarDisplace: 0
     }
   },
   methods: {
@@ -138,21 +138,21 @@ export default {
     isAvailDay (day) {
       return new Date(this.startDate).getTime() <= new Date(day).getTime() && new Date(day).getTime() < (new Date(this.endDate).getTime() || this.endDate)
     },
-    getCalenderMonth (d) {
-      this.calenders = []
+    getCalendarMonth (d) {
+      this.calendars = []
       let startDate = this.startingDateValue ? this.startingDateValue : this.startDate
       if (this.singleDateSelection) {
-        this.calenders.push(this.getCalender(new Date(startDate.getFullYear(), startDate.getMonth() + d, 1)))
+        this.calendars.push(this.getCalendar(new Date(startDate.getFullYear(), startDate.getMonth() + d, 1)))
       } else {
-        this.calenders.push(this.getCalender(new Date(startDate.getFullYear(), startDate.getMonth() + d, 1)))
-        this.calenders.push(this.getCalender(new Date(startDate.getFullYear(), startDate.getMonth() + d + 1, 1)))
+        this.calendars.push(this.getCalendar(new Date(startDate.getFullYear(), startDate.getMonth() + d, 1)))
+        this.calendars.push(this.getCalendar(new Date(startDate.getFullYear(), startDate.getMonth() + d + 1, 1)))
       }
     }
   },
   watch: {
     isOpen: function () {
-      this.calenderDisplace = 0
-      this.getCalenderMonth(0)
+      this.calendarDisplace = 0
+      this.getCalendarMonth(0)
     },
     startingDateValue (value) {
       this.$emit('input', { start: this.startingDateValue, end: this.endingDateValue })

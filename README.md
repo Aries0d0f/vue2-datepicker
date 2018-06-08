@@ -2,8 +2,6 @@
 
 A responsive date range picker for Vue.js, support RWD.
 
-[Live Demo](http://demo.aries0d0f.me)
-
 ![Imgur](https://i.imgur.com/29CGRbz.png)
 
 ## Requirements

@@ -4,7 +4,7 @@ A responsive date range picker for Vue.js, support RWD.
 
 [Live Demo](http://demo.aries0d0f.me)
 
-[Imgur](https://i.imgur.com/29CGRbz.png)
+![Imgur](https://i.imgur.com/29CGRbz.png)
 
 ## Requirements
 - [Vue.js](https://vuejs.org) `^2.0.0`
@@ -57,7 +57,7 @@ Choose only one date, not a range.
 <vue-datepicker :singleDateSelection="true" v-model="date" />
 ```
 
-[Imgur](https://i.imgur.com/G7sYaPJ.png)
+![Imgur](https://i.imgur.com/G7sYaPJ.png)
 
 ### format
 
@@ -70,7 +70,7 @@ The date format string.
 <vue-datepicker :format="YYYY/MM/DD" v-model="date" />
 ```
 
-[Imgur](https://i.imgur.com/HS7fuXG.png)
+![Imgur](https://i.imgur.com/HS7fuXG.png)
 
 ### startDate
 
@@ -83,7 +83,7 @@ The start view date. All the dates before this date will be disabled.
 <vue-datepicker :startDate="new Date('2018-07-29')" v-model="date" />
 ```
 
-[Imgur](https://i.imgur.com/AQ9htF3.png)
+![Imgur](https://i.imgur.com/AQ9htF3.png)
 
 
 ### endDate

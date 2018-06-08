@@ -1,6 +1,6 @@
 {
   "name": "@aries0d0f/vue2-datepicker",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "A datetime picker for Vue.js",
   "author": "Aries Cs <aries0d0f@gmail.com>",
   "license": "MIT",

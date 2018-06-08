@@ -26,7 +26,7 @@ const webpackConfig = merge(baseWebpackConfig, {
   devtool: config.build.productionSourceMap ? config.build.devtool : false,
   output: {
     path: config.build.assetsRoot,
-    library: 'VueDatepicker',
+    library: 'vue-datepicker',
     libraryTarget: 'umd',
     filename: 'vue-datepicker.min.js'
   },

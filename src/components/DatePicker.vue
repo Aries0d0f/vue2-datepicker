@@ -12,7 +12,10 @@
           <div class="right" @click="getCalendarMonth(++calendarDisplace)"><font-awesome-icon icon="angle-right" /></div>
         </div>
         <div class="datepicker-container" v-for="(cal, index) in calendars" :key="index">
-          <h1 class="datepicker-month-name">{{ i18n['month-names'][cal.month] }}</h1>
+          <div class="datepicker-month-name">
+            <h1>{{ i18n['month-names'][cal.month] }}</h1>
+            <p>{{ new Date(cal.daysArray[0]).getFullYear() }}</p>
+          </div>
           <div class="datepicker-weekbar">
             <span v-for="name in i18n['day-names']" :key="name">{{ name }}</span>
           </div>

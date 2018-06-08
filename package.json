@@ -3,15 +3,21 @@
   "version": "1.0.0",
   "description": "A Vue.js project",
   "author": "Aries Cs <aries0d0f@gmail.com>",
-  "private": true,
+  "license": "MIT",
+  "main": "dist/vue-datepicker.min.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "npm run dev",
-    "unit": "jest --config test/unit/jest.conf.js --coverage",
-    "test": "npm run unit",
     "lint": "eslint --ext .js,.vue src test/unit",
     "build": "node build/build.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aries0d0f/vue-datepicker"
+  },
+  "homepage": "hrrps://github.com/Aries0d0f/vue-datepicker",
   "dependencies": {
     "vue": "^2.5.2"
   },

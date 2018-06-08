@@ -21,6 +21,18 @@
   "dependencies": {
     "vue": "^2.5.2"
   },
+  "keywords": [
+    "vue",
+    "vuejs",
+    "date",
+    "dates",
+    "input",
+    "date input",
+    "datepicker",
+    "date picker",
+    "range",
+    "date range picker"
+  ],
   "devDependencies": {
     "@fortawesome/fontawesome": "^1.1.8",
     "@fortawesome/fontawesome-free-solid": "^5.0.13",

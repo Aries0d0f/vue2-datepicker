@@ -13,19 +13,19 @@ A responsive date range picker for Vue.js, support RWD.
 
 using npm:
 ```bash
-$ npm install vue2-datepicker
+$ npm install @aries0d0f/vue2-datepicker
 ```
 
 using CDN:
 ```html
-<script src="https://unpkg.com/vue2-datepicker/dist/vue-datepicker.min.js"></script>
+<script src="https://unpkg.com/@aries0d0f/vue2-datepicker/dist/vue-datepicker.min.js"></script>
 ```
 
 ## Usage
 
 Interanl
 ```javascript
-import VueDatepicker from 'vue2-datepicker'
+import VueDatepicker from '@aries0d0f/vue2-datepicker'
 
 export default {
   components: {
@@ -39,7 +39,7 @@ export default {
 
 Global
 ```
-import VueDatepicker from 'vue2-datepicker'
+import VueDatepicker from '@aries0d0f/vue2-datepicker'
 
 Vue.use(VueDatepicker)
 ```

@@ -2,12 +2,3 @@
 @import 'color';
 @import 'font';
 @import 'mixin.scss';
-@import 'datepicker';
-
-.container {
-  margin: 1rem;
-  code {
-    margin: .5rem 0;
-    border-radius: 3pt;
-  }
-}

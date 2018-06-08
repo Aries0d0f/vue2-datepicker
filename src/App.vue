@@ -59,5 +59,12 @@ export default {
 </script>
 
 <style lang="scss">
-  @import './assets/main.scss';
+@import './assets/main.scss';
+.container {
+  margin: 1rem;
+  code {
+    margin: .5rem 0;
+    border-radius: 3pt;
+  }
+}
 </style>

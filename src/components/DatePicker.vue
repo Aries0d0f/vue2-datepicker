@@ -57,8 +57,6 @@ Vue.component(FontAwesomeIcon.name, FontAwesomeIcon)
 Vue.use(vClickOutside)
 
 const defaultI18n = {
-  night: 'Night',
-  nights: 'Nights',
   'day-names': [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ],
   'start-date': 'Start Date',
   'end-date': 'End Date',

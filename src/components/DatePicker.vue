@@ -49,12 +49,7 @@ import Vue              from 'vue'
 
 import util             from '../util'
 
-// Add fontawesome icon
 fontawesome.library.add(solid)
-Vue.component(FontAwesomeIcon.name, FontAwesomeIcon)
-
-// Add outside click directive
-Vue.use(vClickOutside)
 
 const defaultI18n = {
   'day-names': [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ],
@@ -65,6 +60,12 @@ const defaultI18n = {
 }
 
 export default {
+  components: {
+    'FontAwesomeIcon': FontAwesomeIcon
+  },
+  directives: {
+    clickOutside: vClickOutside.directive
+  },
   name: 'DatePicker',
   props: {
     value: {

@@ -1,9 +1,20 @@
 <template>
   <div class="datepicker-wrapper">
     <div class="datepicker-dummy-wrapper" @click="isOpen = true">
-      <div v-if="!singleDateSelection"><font-awesome-icon icon="calendar-alt" /><input type="text" :value="formatDate(startingDateValue, format)" :placeholder="i18n['start-date']" readonly></div>
-      <div v-if="!singleDateSelection"><font-awesome-icon icon="calendar-alt" /><input type="text" :value="formatDate(endingDateValue, format)" :placeholder="i18n['end-date']" readonly></div>
-      <div v-if="singleDateSelection"><font-awesome-icon icon="calendar-alt" /><input type="text" :value="formatDate(startingDateValue, format)" :placeholder="i18n['choose-date']" readonly></div>
+      <div v-if="!singleDateSelection">
+        <font-awesome-icon icon="calendar-alt" />
+        <input type="text" :value="formatDate(startingDateValue, format)" :placeholder="i18n['start-date']" readonly>
+      </div>
+      <div v-if="!singleDateSelection">
+        <font-awesome-icon icon="angle-right" />
+        <input type="text" :value="formatDate(endingDateValue, format)" :placeholder="i18n['end-date']" readonly>
+        <font-awesome-icon icon="times" @click="clearAll()" />
+      </div>
+      <div v-if="singleDateSelection">
+        <font-awesome-icon icon="calendar-alt" />
+        <input type="text" :value="formatDate(startingDateValue, format)" :placeholder="i18n['choose-date']" readonly>
+        <font-awesome-icon icon="times" @click="clearAll()" />
+      </div>
     </div>
     <div class="datepicker-main-wrapper" v-click-outside="() => {isOpen = false}" v-if="isOpen">
       <div class="datepicker-inner">
@@ -164,6 +175,9 @@ export default {
         this.calendars.push(this.getCalendar(new Date(startDate.getFullYear(), startDate.getMonth() + d, 1)))
         this.calendars.push(this.getCalendar(new Date(startDate.getFullYear(), startDate.getMonth() + d + 1, 1)))
       }
+    },
+    clearAll () {
+      this.startingDateValue = this.endingDateValue = null
     }
   },
   watch: {

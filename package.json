@@ -15,9 +15,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Aries0d0f/vue-datepicker"
+    "url": "https://github.com/Aries0d0f/vue2-datepicker"
   },
-  "homepage": "hrrps://github.com/Aries0d0f/vue-datepicker",
+  "homepage": "hrrps://github.com/Aries0d0f/vue2-datepicker",
   "dependencies": {
     "vue": "^2.5.2"
   },

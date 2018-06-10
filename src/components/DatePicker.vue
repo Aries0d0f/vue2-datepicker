@@ -45,7 +45,6 @@ import FontAwesomeIcon  from '@fortawesome/vue-fontawesome'
 import fontawesome      from '@fortawesome/fontawesome'
 import solid            from '@fortawesome/fontawesome-free-solid'
 import vClickOutside    from 'v-click-outside'
-import Vue              from 'vue'
 
 import util             from '../util'
 

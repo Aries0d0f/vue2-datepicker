@@ -3,16 +3,16 @@
     <div class="datepicker-dummy-wrapper" @click="isOpen = true">
       <div v-if="!singleDateSelection" class="datepicker-inputbox">
         <font-awesome-icon icon="calendar-alt" />
-        <input type="text" :value="formatDate(startingDateValue, format)" :placeholder="i18n['start-date']" readonly>
+        <input type="text" :value="formatDate(startingDateValue ? startingDateValue : startDateValue, format)" :placeholder="i18n['start-date']" readonly>
       </div>
       <div v-if="!singleDateSelection" class="datepicker-inputbox">
         <font-awesome-icon icon="angle-right" />
-        <input type="text" :value="formatDate(endingDateValue, format)" :placeholder="i18n['end-date']" readonly>
+        <input type="text" :value="formatDate(endingDateValue ? endingDateValue : endDateValue, format)" :placeholder="i18n['end-date']" readonly>
         <font-awesome-icon icon="times" @click="clearAll()" />
       </div>
       <div v-if="singleDateSelection" class="datepicker-inputbox">
         <font-awesome-icon icon="calendar-alt" />
-        <input type="text" :value="formatDate(startingDateValue, format)" :placeholder="i18n['choose-date']" readonly>
+        <input type="text" :value="formatDate(startingDateValue ? startingDateValue : startDateValue, format)" :placeholder="i18n['choose-date']" readonly>
         <font-awesome-icon icon="times" @click="clearAll()" />
       </div>
     </div>
@@ -72,11 +72,11 @@ export default {
     },
     startDateValue: {
       default: null,
-      type: Date
+      type: [ Date, String ]
     },
     endDateValue: {
       default: null,
-      type: Date
+      type: [ Date, String ]
     },
     format: {
       default: 'YYYY-MM-DD',

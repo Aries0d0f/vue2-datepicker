@@ -21,6 +21,7 @@ using CDN:
 
 ## Usage
 
+Internal
 ```javascript
 import VueDatepicker from '@aries0d0f/vue2-datepicker'
 
@@ -30,6 +31,16 @@ export default {
   }
 }
 ```
+
+Global
+```javascript
+// At your main.js
+import Vue           from 'vue'
+import VueDatepicker from '@aries0d0f/vue2-datepicker'
+
+Vue.component('VueDatepicker', VueDatepicker)
+```
+
 ```html
 <vue-datepicker />
 ```

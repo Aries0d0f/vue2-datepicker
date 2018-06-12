@@ -24,15 +24,15 @@
         </div>
         <div class="datepicker-container" v-for="(cal, index) in calendars" :key="index">
           <div class="datepicker-month-name">
-            <h1>{{ i18n['month-names'][cal.month] }}</h1>
-            <p>{{ new Date(cal.daysArray[0]).getFullYear() }}</p>
+            <h1 class="datepicker-month-name-title">{{ i18n['month-names'][cal.month] }}</h1>
+            <p class="datepicker-month-name-subtitle">{{ new Date(cal.daysArray[0]).getFullYear() }}</p>
           </div>
           <div class="datepicker-weekbar">
             <span v-for="name in i18n['day-names']" :key="name">{{ name }}</span>
           </div>
           <div class="datepicker-table">
-            <p v-for="n in cal.startWeekIndex" :key="n"></p>
-            <p class="datepicker-day" v-for="(day, i) in cal.daysArray" :key="i + cal.startWeekIndex + 1" @mouseover="hoveringDate = day" @click="isAvailDay(day) ? setDay(day) : null" :class="{'active': isSelecedDay(day), 'available': isAvailDay(day)}">{{ new Date(day).getDate() }}</p>
+            <p class="datepicker-table-cal" v-for="n in cal.startWeekIndex" :key="n"></p>
+            <p class="datepicker-table-cal datepicker-day" v-for="(day, i) in cal.daysArray" :key="i + cal.startWeekIndex + 1" @mouseover="hoveringDate = day" @click="isAvailDay(day) ? setDay(day) : null" :class="{'active': isSelecedDay(day), 'available': isAvailDay(day)}">{{ new Date(day).getDate() }}</p>
           </div>
         </div>
       </div>

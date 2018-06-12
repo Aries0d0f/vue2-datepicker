@@ -132,10 +132,13 @@
     @media screen and (max-width: 600px) {
       height: 3.25rem;
     }
-    h1, p {
+    &-title, &-subtitle {
       line-height: 1.1;
+      text-align: center;
+      color: $white;
+      text-indent: 0;
     }
-    h1 {
+    &-title {
       font-size: 32px;
       font-weight: 200;
       @media screen and (max-width: 600px) {
@@ -155,6 +158,7 @@
     }
     span {
       width: calc(100% / 7);
+      text-align: center;
     }
   }
   &-table {
@@ -163,7 +167,8 @@
     display: flex;
     flex-flow: wrap;
     padding: .5rem;
-    p {
+    &-cal {
+      text-indent: 0;
       display: flex;
       justify-content: center;
       align-items: center;
